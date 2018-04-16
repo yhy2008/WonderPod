@@ -30,5 +30,6 @@
 .main {
   display: flex;
   width: 100%;
+  background: #F5F8FA;
 }
 

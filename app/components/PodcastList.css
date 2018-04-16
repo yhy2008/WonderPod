@@ -1,7 +1,6 @@
 .podcasts {
   width: 100%;
   padding: 30px 20px 30px 50px;
-  background: #F5F8FA;
   color: #293742;
 }
 
@@ -34,9 +33,3 @@
   position: relative;
 }
 
-.podcasts__podcast_close {
-  position: fixed;
-  top: 60px;
-  right: 30px;
-  color: black !important;
-}

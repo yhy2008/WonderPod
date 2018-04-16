@@ -4,7 +4,8 @@ import styles from './Episode.css';
 import { removeTag } from '../utils/helper';
 
 type Props = {
-  episode: Object
+  episode: Object,
+  image: string
 };
 
 class Episode extends Component {
@@ -18,13 +19,16 @@ class Episode extends Component {
     const description = typeof episode.description[0] === 'string' ?
       episode.description[0] :
       episode.description[0]._;
+    const image = 'itunes:image' in episode ?
+      episode['itunes:image'][0].$.href :
+      this.props.image;
 
     return (
       <div className={styles.episode}>
         <div className={styles.episode__thumbnail}>
           <img
             className={styles.episode__image}
-            src={removeTag(episode['itunes:image'][0].$.href)}
+            src={removeTag(image)}
             alt="episode artwork"
           />
         </div>

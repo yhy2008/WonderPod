@@ -7958,6 +7958,10 @@ react-hot-loader@^4.0.0-beta.13:
     hoist-non-react-statics "^2.3.1"
     react-stand-in "^4.0.0-beta.18"
 
+react-lazyload@^2.3.0:
+  version "2.3.0"
+  resolved "http://registry.npm.taobao.org/react-lazyload/download/react-lazyload-2.3.0.tgz#ccb134223012447074a96543954f44b055dc6185"
+
 react-popper@^0.8.2:
   version "0.8.3"
   resolved "http://registry.npm.taobao.org/react-popper/download/react-popper-0.8.3.tgz#0f73333137c9fb0af6ec4074d2d0585a0a0461e1"

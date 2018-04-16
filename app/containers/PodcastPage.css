@@ -1,8 +1,9 @@
 .podcast {
+  width: 100%;
 }
 
 .podcast__info {
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
   text-align: center;
 }
@@ -26,4 +27,12 @@
 
 .podcast__episode {
   margin: 30px 40px;
+}
+
+.podcast__back {
+  z-index: 1;
+  position: fixed;
+  top: 65px;
+  left: 25px;
+  color: black !important;
 }
