@@ -1,0 +1,42 @@
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+.text_omit {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 4.95px 0;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 3.1px;
+  cursor: pointer;
+  background: rgba(92, 112, 128, 0.78);
+  border-radius: 1.3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  border: 0.1px solid #888;
+  height: 13px;
+  width: 13px;
+  border-radius: 15px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5.15px;
+}

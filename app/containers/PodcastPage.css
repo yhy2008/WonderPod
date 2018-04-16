@@ -1,0 +1,29 @@
+.podcast {
+}
+
+.podcast__info {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.podcast__thumbnail {
+  height: 200px;
+  margin: 30px auto;
+}
+
+.podcast__image {
+  height: 100%;
+}
+
+.podcast__description {
+  margin-top: 20px;
+}
+
+.podcast__episodes {
+  padding-top: 20px;
+}
+
+.podcast__episode {
+  margin: 30px 40px;
+}

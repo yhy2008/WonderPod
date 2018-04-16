@@ -1,0 +1,23 @@
+.play_info {
+  display: flex;
+  border-right: 1px solid #BFCCD6;
+}
+
+.play_info__description {
+  padding-left: 10px;
+  padding-right: 5px;
+  width: 114px;
+}
+
+.play_info__text {
+  line-height: 11px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.play_info__thumbnail {
+  width: 59px;
+  height: 59px;
+}
+

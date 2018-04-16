@@ -1,0 +1,13 @@
+.footer {
+  display: flex;
+  width: 100%;
+}
+
+.footer__play_info {
+  width: 183px;
+}
+
+.footer__player {
+  max-width: 100%;
+  flex: 1;
+}

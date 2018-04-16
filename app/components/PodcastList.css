@@ -1,0 +1,42 @@
+.podcasts {
+  width: 100%;
+  padding: 30px 20px 30px 50px;
+  background: #F5F8FA;
+  color: #293742;
+}
+
+.podcasts__card_group {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.podcasts__card {
+  width: 100px;
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+
+.podcasts__card_thumbnail {
+  width: 100px;
+  height: 100px;
+}
+
+.podcasts__card_title {
+  margin-top: 3px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.podcasts__podcast {
+  min-height: 100%;
+  min-width: 100%;
+  position: relative;
+}
+
+.podcasts__podcast_close {
+  position: fixed;
+  top: 60px;
+  right: 30px;
+  color: black !important;
+}

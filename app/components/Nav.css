@@ -1,0 +1,12 @@
+.nav {
+  -ms-overflow-style: scrollbar;
+  -webkit-app-region: drag;
+}
+
+.nav__search_form {
+  -webkit-app-region: no-drag;
+}
+
+.nav__buttons {
+  -webkit-app-region: no-drag;
+}
