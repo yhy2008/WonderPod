@@ -1,0 +1,59 @@
+.playlist {
+  width: 100%;
+  padding: 30px;
+}
+
+.playlist__episode {
+  display: flex;
+  height: 80px;
+}
+
+.playlist__episode_thumbnail {
+  padding: 10px;
+}
+
+.playlist__episode_image {
+  height: 60px;
+  width: 60px;
+}
+
+.playlist__episode_description {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 17px;
+  line-height: 17px;
+}
+
+.playlist__episode_title {
+  margin-bottom: 10px;
+}
+
+.playlist__episode_author {
+  color: #738694 !important;
+}
+
+.playlist__episode_buttons {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.playlist__episode_remove {
+  margin-right: 20px;
+}
+
+.playlist__episode_button {
+  color: #293742 !important;
+}
+
+.playlist__episode_remove {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.playlist__episode:hover .playlist__episode_remove {
+  display: inline-block;
+  opacity: 1;
+}

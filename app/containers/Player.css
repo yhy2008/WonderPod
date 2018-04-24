@@ -9,6 +9,7 @@
 }
 
 .player__buttons {
+  padding-left: 5px;
   margin: 0 auto;
   width: 110px;
   position: relative;
@@ -80,4 +81,12 @@
   transform: translateY(-50%);
 }
 
+.player__control_button {
+  padding: 7px;
+  border: 1px solid #BFCCD6;
+  border-radius: 99px;
+}
 
+.player__button_click {
+  color: #182026 !important;
+}

@@ -1,14 +1,14 @@
 // @flow
 import React, { Component } from 'react';
-import { parseString } from 'xml2js';
 import axios from 'axios';
 import { Icon } from '@blueprintjs/core';
 import LazyLoad from 'react-lazyload';
 import { withRouter } from 'react-router';
+import _ from 'lodash';
 import styles from './PodcastPage.css';
 import LoadingPage from '../utils/LoadingPage';
-import { removeTag } from '../utils/helper';
 import Episode from './Episode';
+import { processRSS } from '../utils/helper';
 
 type Props = {
   match: Object,
@@ -23,16 +23,12 @@ class PodcastPage extends Component {
   };
 
   componentDidMount() {
-    this.fetchRSS(decodeURIComponent(this.props.match.params.rss));
+    this.setRSS(this.props.match.params.rss);
   }
 
-  fetchRSS = async (feedUrl) => {
-    const response = await axios.get(feedUrl);
-    const podcast = await new Promise((resolve) => {
-      parseString(response.data, (err, result) => {
-        resolve(result);
-      });
-    });
+  setRSS = async (feedUrl) => {
+    const response = await axios.get(decodeURIComponent(feedUrl));
+    const podcast = await processRSS(response.data);
     this.setState({ podcast });
   }
 
@@ -42,11 +38,10 @@ class PodcastPage extends Component {
   }
 
   renderEpisodes() {
-    const { channel } = this.state.podcast.rss;
-    return this.state.podcast.rss.channel[0].item.map(episode => (
-      <div className={styles.podcast__episode}>
+    return _.map(this.state.podcast.items, (episode, key) => (
+      <div className={styles.podcast__episode} key={key}>
         <LazyLoad height="100%" overflow throttle={100}>
-          <Episode episode={episode} image={channel[0]['itunes:image'][0].$.href} />
+          <Episode episode={episode} />
         </LazyLoad>
       </div>
     ));
@@ -64,13 +59,13 @@ class PodcastPage extends Component {
                   <div className={styles.podcast__thumbnail}>
                     <img
                       className={styles.podcast__image}
-                      src={removeTag(podcast.rss.channel[0]['itunes:image'][0].$.href)}
+                      src={podcast.image}
                       alt="podcast artwork"
                     />
                   </div>
-                  <h3>{removeTag(podcast.rss.channel[0].title[0])}</h3>
-                  <small>{removeTag(podcast.rss.channel[0]['itunes:author'][0])}</small>
-                  <p className={styles.podcast__description}>{removeTag(podcast.rss.channel[0]['itunes:summary'][0])}</p>
+                  <h3>{podcast.title}</h3>
+                  <small>{podcast.author}</small>
+                  <p className={styles.podcast__description}>{podcast.description}</p>
                 </div>
                 <div className={styles.podcast__episodes}>
                   {this.renderEpisodes()}

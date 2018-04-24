@@ -10,10 +10,15 @@
 }
 
 .play_info__text {
-  line-height: 11px;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  line-height: 13px;
+  font-size: 12px;
+}
+
+.play_info__author {
+  font-size: 11px;
 }
 
 .play_info__thumbnail {

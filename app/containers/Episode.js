@@ -1,49 +1,70 @@
 // @flow
 import React, { Component } from 'react';
+import { Icon } from '@blueprintjs/core';
+import { connect } from 'react-redux';
+import { playEpisode, addToPlaylist } from '../actions';
+import Message from '../utils/Message';
 import styles from './Episode.css';
-import { removeTag } from '../utils/helper';
 
 type Props = {
   episode: Object,
-  image: string
+  playEpisode: Function,
+  addToPlaylist: Function
 };
 
 class Episode extends Component {
   props: Props;
 
+  onClickPlay = (event) => {
+    event.preventDefault();
+    this.props.playEpisode(this.props.episode);
+  }
+
+  onClickAdd = (event) => {
+    event.preventDefault();
+    this.props.addToPlaylist(this.props.episode);
+    Message.show({
+      intent: 'success',
+      message: '已添加至播放列表'
+    });
+  }
+
   render() {
     const { episode } = this.props;
-    const date = new Date(removeTag(episode.pubDate[0]))
-      .toISOString()
-      .slice(0, 10);
-    const description = typeof episode.description[0] === 'string' ?
-      episode.description[0] :
-      episode.description[0]._;
-    const image = 'itunes:image' in episode ?
-      episode['itunes:image'][0].$.href :
-      this.props.image;
 
     return (
       <div className={styles.episode}>
         <div className={styles.episode__thumbnail}>
           <img
             className={styles.episode__image}
-            src={removeTag(image)}
+            src={episode.image}
             alt="episode artwork"
           />
         </div>
         <div className={styles.episode__info}>
           <h4 className={styles.episode__title}>
-            {removeTag(episode.title[0])}
+            {episode.title}
           </h4>
-          <small>{date}</small>
+          <small>{episode.date}</small>
           <p className={styles.episode__description}>
-            {removeTag(description)}
+            {episode.description}
           </p>
+        </div>
+        <div className={styles.episode__hover}>
+          <div className={styles.episode__mask}>
+            <div className={styles.episode__buttons}>
+              <a href="#" onClick={this.onClickPlay}>
+                <Icon className={styles.episode__button} icon="play" iconSize={30} />
+              </a>
+              <a href="#" onClick={this.onClickAdd}>
+                <Icon className={styles.episode__button} icon="add-to-artifact" iconSize={30} />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default Episode;
+export default connect(null, { playEpisode, addToPlaylist })(Episode);

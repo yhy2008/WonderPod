@@ -1,4 +1,5 @@
 .episode {
+  position: relative;
   display: flex;
   height: 130px;
 }
@@ -30,4 +31,37 @@
   height: 21px;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.episode__hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 130px;
+  width: 100%;
+}
+
+.episode__mask {
+  height: 130px;
+  width: 130px;
+  background: rgba(206, 217, 224, 0.5);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.episode__buttons {
+  width: 100px;
+  position: relative;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.episode__button {
+  margin: 0 10px;
+  color: #202B33 !important;
+}
+
+.episode__hover:hover .episode__mask {
+  opacity: 1;
 }

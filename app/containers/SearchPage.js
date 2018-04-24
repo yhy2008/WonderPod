@@ -6,7 +6,7 @@ import { searchPodcasts } from '../actions';
 
 type Props = {
   searchPodcasts: Function,
-  podcasts: Array,
+  podcasts: Object,
   match: Object
 };
 

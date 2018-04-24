@@ -206,6 +206,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "source-map-support": "^0.5.3",
+    "uuid": "^3.2.1",
     "xml2js": "^0.4.19"
   },
   "devEngines": {

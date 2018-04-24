@@ -2,24 +2,22 @@
 import React, { Component } from 'react';
 import styles from './PlayInfo.css';
 
-type Props = {};
+type Props = {
+  episode: Object
+};
 
 class PlayInfo extends Component<Props> {
   props: Props;
 
   render() {
-    const info = {
-      img: 'https://media.simplecast.com/podcast/image/279/small_1413649662-artwork.jpg',
-      name: 'Full Stack Radio',
-      description: 'Frontend With Nate'
-    };
+    const { image, title, author } = this.props.episode;
     return (
       <div className={styles.play_info}>
-        <img src={info.img} alt="info" className={styles.play_info__thumbnail} />
+        <img src={image} alt="info" className={styles.play_info__thumbnail} />
         <div className={styles.play_info__description}>
           <div className={styles.play_info__text}>
-            <p className="text_omit">{info.description}</p>
-            <small className="text_omit">{info.name}</small>
+            <p className="text_omit">{title}</p>
+            <p className={`text_omit ${styles.play_info__author}`}>{author}</p>
           </div>
         </div>
       </div>

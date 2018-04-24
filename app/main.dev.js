@@ -10,7 +10,7 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import MenuBuilder from './menu';
 
 let mainWindow = null;
@@ -56,15 +56,15 @@ app.on('window-all-closed', () => {
 
 app.on('ready', async () => {
   if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
-    console.log('start');
     await installExtensions();
   }
-  console.log('ready');
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 800,
+    width: 600,
     height: 600,
+    minWidth: 600,
+    minHeight: 600,
     autoHideMenuBar: true,
     frame: false
   });
@@ -88,3 +88,20 @@ app.on('ready', async () => {
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 });
+
+ipcMain.on('window:close', () => {
+  mainWindow.close();
+});
+
+ipcMain.on('window:maximize', () => {
+  if (mainWindow.isMaximized()) {
+    mainWindow.unmaximize();
+  } else {
+    mainWindow.maximize();
+  }
+});
+
+ipcMain.on('window:minimize', () => {
+  mainWindow.minimize();
+});
+
