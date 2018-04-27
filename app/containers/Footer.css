@@ -1,4 +1,6 @@
 .footer {
+  border-top: 1px solid #BFCCD6;
+  height: 60px;
   display: flex;
   width: 100%;
 }

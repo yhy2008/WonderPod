@@ -10,7 +10,7 @@
  *
  * @flow
  */
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, shell } from 'electron';
 import MenuBuilder from './menu';
 
 let mainWindow = null;
@@ -61,10 +61,10 @@ app.on('ready', async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 600,
+    width: 800,
     height: 600,
     minWidth: 600,
-    minHeight: 600,
+    minHeight: 400,
     autoHideMenuBar: true,
     frame: false
   });
@@ -105,3 +105,6 @@ ipcMain.on('window:minimize', () => {
   mainWindow.minimize();
 });
 
+ipcMain.on('open-link', (event, link) => {
+  shell.openExternal(link);
+});

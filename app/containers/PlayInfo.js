@@ -1,18 +1,32 @@
 // @flow
 import React, { Component } from 'react';
+import { Icon } from '@blueprintjs/core';
+import { connect } from 'react-redux';
+import { openLink } from '../actions/app';
 import styles from './PlayInfo.css';
 
 type Props = {
-  episode: Object
+  episode: Object,
+  openLink: Function
 };
 
 class PlayInfo extends Component<Props> {
   props: Props;
 
+  onClickMask = (event) => {
+    event.preventDefault();
+    this.props.openLink(this.props.episode.link);
+  }
+
   render() {
     const { image, title, author } = this.props.episode;
     return (
       <div className={styles.play_info}>
+        <a href="#" onClick={this.onClickMask}>
+          <div className={styles.play_info__mask}>
+            <Icon className={styles.play_info__link_icon} icon="document-open" iconSize={20} />
+          </div>
+        </a>
         <img src={image} alt="info" className={styles.play_info__thumbnail} />
         <div className={styles.play_info__description}>
           <div className={styles.play_info__text}>
@@ -25,4 +39,8 @@ class PlayInfo extends Component<Props> {
   }
 }
 
-export default PlayInfo;
+function mapStateToProps({ episode }) {
+  return { episode };
+}
+
+export default connect(mapStateToProps, { openLink })(PlayInfo);

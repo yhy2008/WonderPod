@@ -1,29 +1,26 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setPlayTimeToCache } from '../utils/data';
 import SoundPlayer from '../components/SoundPlayer';
 import styles from './Player.css';
 
 type Props = {
   episode: Object,
-  autoPlay: boolean,
-  playTime: number
+  playTime: number,
+  autoplay: boolean
 };
 
 class Player extends Component<Props> {
   props: Props;
 
-  componentWillReceiveProps(nextProps) {
-    localStorage.setItem('episode', JSON.stringify(nextProps.episode));
-    localStorage.setItem('playTime', 0);
-  }
-
   onReady = (soundCloudAudio) => {
     soundCloudAudio.audio.currentTime = this.props.playTime;
-    if (this.props.autoPlay) {
+    if (this.props.autoplay) {
       soundCloudAudio.play();
     }
     soundCloudAudio.on('timeupdate', () => {
-      localStorage.setItem('playTime', soundCloudAudio.audio.currentTime);
+      setPlayTimeToCache(soundCloudAudio.audio.currentTime);
     });
   }
 
@@ -42,4 +39,8 @@ class Player extends Component<Props> {
   }
 }
 
-export default Player;
+function mapStateToProps({ episode, playTime, autoplay }) {
+  return { episode, playTime, autoplay };
+}
+
+export default connect(mapStateToProps)(Player);

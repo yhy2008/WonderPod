@@ -1,6 +1,10 @@
 import axios from 'axios';
 import Message from '../utils/Message';
 import {
+  getEpisodeFromCache,
+  setEpisodeToCache,
+  getPlayTimeFromCache,
+  setPlayTimeToCache,
   getSubscribedFromCache,
   subscribeToCache,
   unsubscribeFromCache,
@@ -17,6 +21,11 @@ export const UNSUBSCRIBE = 'UNSUBSCRIBE';
 export const GET_PLAYLIST = 'GET_PLAYLIST';
 export const ADD_TO_PLAYLIST = 'ADD_TO_PLAYLIST';
 export const REMOVE_FROM_PLAYLIST = 'REMOVE_FROM_PLAYLIST';
+export const GET_EPISODE = 'GET_EPISODE';
+export const SET_EPISODE = 'SET_EPISODE';
+export const GET_PLAY_TIME = 'GET_PLAY_TIME';
+export const SET_PLAY_TIME = 'SET_PLAY_TIME';
+export const SET_AUTOPLAY = 'SET_AUTOPLAY';
 
 const SEARCH_URI = 'https://itunes.apple.com/search?media=podcast&term=';
 
@@ -34,11 +43,51 @@ export function searchPodcasts(term) {
   };
 }
 
-export function playEpisode(episode) {
+export function getEpisode() {
+  const episode = getEpisodeFromCache();
   return (dispatch) => {
     dispatch({
-      type: PLAY_EPISODE,
+      type: GET_EPISODE,
       payload: episode
+    });
+  };
+}
+
+export function setEpisode(episode) {
+  setEpisodeToCache(episode);
+  return (dispatch) => {
+    dispatch({
+      type: SET_EPISODE,
+      payload: episode
+    });
+  };
+}
+
+export function getPlayTime() {
+  const playTime = getPlayTimeFromCache();
+  return (dispatch) => {
+    dispatch({
+      type: GET_PLAY_TIME,
+      payload: playTime
+    });
+  };
+}
+
+export function setPlayTime(playTime) {
+  setPlayTimeToCache(playTime);
+  return (dispatch) => {
+    dispatch({
+      type: SET_PLAY_TIME,
+      payload: playTime
+    });
+  };
+}
+
+export function setAutoplay(autoplay) {
+  return (dispatch) => {
+    dispatch({
+      type: SET_AUTOPLAY,
+      payload: autoplay
     });
   };
 }

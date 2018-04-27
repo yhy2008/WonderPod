@@ -2,62 +2,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import PlayInfo from '../components/PlayInfo';
+import PlayInfo from './PlayInfo';
 import Player from './Player';
+import { getEpisode, getPlayTime } from '../actions';
 import styles from './Footer.css';
 
 type Props = {
-  episode: Object
+  episode: Object,
+  getEpisode: Function,
+  getPlayTime: Function
 };
 
 class Footer extends Component<Props> {
   props: Props;
 
-  state = {
-    autoPlay: true,
-    playTime: 0,
-    episode: {}
-  };
-
   componentDidMount() {
-    this.setEpisode();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      autoPlay: true,
-      playTime: 0,
-      episode: nextProps.episode
-    });
-  }
-
-  setEpisode() {
-    this.setState({ autoPlay: false });
-    const episode = localStorage.getItem('episode');
-    if (episode) {
-      this.setState({ episode: JSON.parse(episode) });
-    }
-    const playTime = localStorage.getItem('playTime');
-    if (episode && playTime) {
-      this.setState({ playTime: Number(playTime) });
-    }
+    this.props.getEpisode();
+    this.props.getPlayTime();
   }
 
   render() {
-    const { playTime, autoPlay, episode } = this.state;
-    return _.isEmpty(episode) ?
+    return _.isEmpty(this.props.episode) ?
       null :
       (
         <div className={styles.footer}>
           <div className={styles.footer__play_info}>
-            <PlayInfo episode={episode} />
+            <PlayInfo />
           </div>
           <div className={styles.footer__player}>
-            <Player
-              episode={episode}
-              playTime={playTime}
-              autoPlay={autoPlay}
-            />
+            <Player />
           </div>
         </div>
       );
@@ -67,4 +40,4 @@ class Footer extends Component<Props> {
 function mapStateToProps({ episode }) {
   return { episode };
 }
-export default connect(mapStateToProps)(Footer);
+export default connect(mapStateToProps, { getEpisode, getPlayTime })(Footer);

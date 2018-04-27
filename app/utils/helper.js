@@ -33,11 +33,15 @@ export async function processRSS(xml) {
     const author = 'itunes.author' in item ?
       removeTag(item['itunes.author'][0]) :
       processedPodcast.author;
+    const link = 'link' in item ?
+      item.link[0] :
+      '#';
     return {
       key: uuidv4(),
       title: removeTag(item.title[0]),
       description: removeTag(description),
       url: removeTag(item.enclosure[0].$.url),
+      link,
       image,
       author,
       date

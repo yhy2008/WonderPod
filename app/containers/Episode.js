@@ -2,14 +2,21 @@
 import React, { Component } from 'react';
 import { Icon } from '@blueprintjs/core';
 import { connect } from 'react-redux';
-import { playEpisode, addToPlaylist } from '../actions';
+import {
+  setEpisode,
+  setPlayTime,
+  addToPlaylist,
+  setAutoplay
+} from '../actions';
 import Message from '../utils/Message';
 import styles from './Episode.css';
 
 type Props = {
   episode: Object,
-  playEpisode: Function,
-  addToPlaylist: Function
+  setEpisode: Function,
+  addToPlaylist: Function,
+  setPlayTime: Function,
+  setAutoplay: Function
 };
 
 class Episode extends Component {
@@ -17,7 +24,9 @@ class Episode extends Component {
 
   onClickPlay = (event) => {
     event.preventDefault();
-    this.props.playEpisode(this.props.episode);
+    this.props.setAutoplay(true);
+    this.props.setPlayTime(0);
+    this.props.setEpisode(this.props.episode);
   }
 
   onClickAdd = (event) => {
@@ -67,4 +76,9 @@ class Episode extends Component {
   }
 }
 
-export default connect(null, { playEpisode, addToPlaylist })(Episode);
+export default connect(null, {
+  setEpisode,
+  setPlayTime,
+  addToPlaylist,
+  setAutoplay
+})(Episode);

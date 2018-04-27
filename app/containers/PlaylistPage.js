@@ -3,14 +3,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Icon } from '@blueprintjs/core';
 import _ from 'lodash';
-import { getPlaylist, removeFromPlaylist, playEpisode } from '../actions';
+import {
+  getPlaylist,
+  removeFromPlaylist,
+  setEpisode,
+  setPlayTime,
+  setAutoplay
+} from '../actions';
 import styles from './PlaylistPage.css';
 
 type Props = {
   playlist: Object,
   getPlaylist: Function,
   removeFromPlaylist: Function,
-  playEpisode: Function
+  setEpisode: Function,
+  setPlayTime: Function,
+  setAutoplay: Function
 };
 
 class PlaylistPage extends Component {
@@ -22,7 +30,9 @@ class PlaylistPage extends Component {
 
   onPlayClick = (episode) => (event) => {
     event.preventDefault();
-    this.props.playEpisode(episode);
+    this.props.setAutoplay(true);
+    this.props.setPlayTime(0);
+    this.props.setEpisode(episode);
     this.props.removeFromPlaylist(episode);
   }
 
@@ -74,5 +84,7 @@ function mapStateToProps({ playlist }) {
 export default connect(mapStateToProps, {
   getPlaylist,
   removeFromPlaylist,
-  playEpisode
+  setEpisode,
+  setPlayTime,
+  setAutoplay
 })(PlaylistPage);

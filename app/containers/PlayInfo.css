@@ -26,3 +26,24 @@
   height: 59px;
 }
 
+.play_info__mask {
+  position: absolute;
+  width: 59px;
+  height: 59px;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+}
+
+.play_info__link_icon {
+  color: #DDD !important;
+  display: block !important;
+  position: relative;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.play_info:hover .play_info__mask {
+  cursor: pointer;
+  opacity: 1;
+}
