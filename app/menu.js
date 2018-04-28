@@ -41,7 +41,7 @@ export default class MenuBuilder {
 
   buildDarwinTemplate() {
     const subMenuAbout = {
-      label: 'Electron',
+      label: 'WonderPod',
       submenu: [
         { label: 'About WonderPod', selector: 'orderFrontStandardAboutPanel:' },
         { type: 'separator' },
@@ -92,10 +92,9 @@ export default class MenuBuilder {
     const subMenuHelp = {
       label: 'Help',
       submenu: [
-        { label: 'Learn More', click() { shell.openExternal('http://electron.atom.io'); } },
-        { label: 'Documentation', click() { shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme'); } },
-        { label: 'Community Discussions', click() { shell.openExternal('https://discuss.atom.io/c/electron'); } },
-        { label: 'Search Issues', click() { shell.openExternal('https://github.com/atom/electron/issues'); } }
+        { label: 'Learn More', click() { shell.openExternal('https://github.com/Nate06/WonderPod'); } },
+        { label: 'Documentation', click() { shell.openExternal('https://github.com/Nate06/WonderPod'); } },
+        { label: 'Search Issues', click() { shell.openExternal('https://github.com/Nate06/WonderPod/issues'); } }
       ]
     };
 
