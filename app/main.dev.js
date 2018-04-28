@@ -55,7 +55,11 @@ app.on('window-all-closed', () => {
 
 app.on('ready', launchWindow);
 
-app.on('activate', launchWindow);
+app.on('activate', async (event, hasVisibleWindows) => {
+  if (!hasVisibleWindows) {
+    await launchWindow();
+  }
+});
 
 ipcMain.on('window:close', () => {
   mainWindow.close();
