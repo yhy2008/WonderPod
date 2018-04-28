@@ -7,7 +7,7 @@ Download latest version on this [page](https://github.com/Nate06/WonderPod/relea
 
 ## Screenshot
 
-<img src="http://7xnnn5.com1.z0.glb.clouddn.com/wonderpod-1-shadow-zip.png" width="400" height="300" />
-<img src="http://7xnnn5.com1.z0.glb.clouddn.com/wonderpod-2-shadow-zip.png" width="400" height="300" />
-<img src="http://7xnnn5.com1.z0.glb.clouddn.com/wonderpod-3-shadow-zip.png" width="400" height="300" />
+<img src="http://7xnnn5.com1.z0.glb.clouddn.com/wonderpod-1-shadow-zip.png" width="800" height="600" />
+<img src="http://7xnnn5.com1.z0.glb.clouddn.com/wonderpod-2-shadow-zip.png" width="800" height="600" />
+<img src="http://7xnnn5.com1.z0.glb.clouddn.com/wonderpod-3-shadow-zip.png" width="800" height="600" />
 
