@@ -53,8 +53,31 @@ app.on('window-all-closed', () => {
   }
 });
 
+app.on('ready', launchWindow);
 
-app.on('ready', async () => {
+app.on('activate', launchWindow);
+
+ipcMain.on('window:close', () => {
+  mainWindow.close();
+});
+
+ipcMain.on('window:maximize', () => {
+  if (mainWindow.isMaximized()) {
+    mainWindow.unmaximize();
+  } else {
+    mainWindow.maximize();
+  }
+});
+
+ipcMain.on('window:minimize', () => {
+  mainWindow.minimize();
+});
+
+ipcMain.on('open-link', (event, link) => {
+  shell.openExternal(link);
+});
+
+async function launchWindow() {
   if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     await installExtensions();
   }
@@ -87,24 +110,4 @@ app.on('ready', async () => {
 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
-});
-
-ipcMain.on('window:close', () => {
-  mainWindow.close();
-});
-
-ipcMain.on('window:maximize', () => {
-  if (mainWindow.isMaximized()) {
-    mainWindow.unmaximize();
-  } else {
-    mainWindow.maximize();
-  }
-});
-
-ipcMain.on('window:minimize', () => {
-  mainWindow.minimize();
-});
-
-ipcMain.on('open-link', (event, link) => {
-  shell.openExternal(link);
-});
+}
